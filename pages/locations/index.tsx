@@ -6,7 +6,7 @@ interface Props {}
 export default function locations({}: Props): ReactElement {
   return (
     <Box>
-      <Text>This is episodes page</Text>
+      <Text>This is locations page</Text>
     </Box>
   );
 }

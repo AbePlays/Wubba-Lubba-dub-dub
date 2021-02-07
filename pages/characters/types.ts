@@ -8,7 +8,7 @@ export type Character = {
   image: string;
 };
 
-export interface Origin {
+export type Origin = {
   name: string;
   url: string;
-}
+};
