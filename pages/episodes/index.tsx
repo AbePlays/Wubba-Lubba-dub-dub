@@ -1,34 +1,23 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
-import { Episode } from "./types";
+import SeasonCard from "../../components/Episode";
 
-export const getStaticProps = async () => {
-  const res = await fetch(`https://rickandmortyapi.com/api/episode`);
-  const data = await res.json();
+import { data } from "../../data/episodes";
+import { Season } from "./types";
 
-  return {
-    props: {
-      episodes: data.results,
-    },
-  };
-};
+interface Props {}
 
-interface Props {
-  episodes: Episode[];
-}
-
-export default function episodes({ episodes }: Props): ReactElement {
+export default function episodes({}: Props): ReactElement {
   return (
-    <Box>
-      <Text>This is episodes page</Text>
-      {episodes.map((episode: Episode) => {
-        return (
-          <Box key={episode.id} border="1px" my="4">
-            <Text>{episode.name}</Text>
-            <Text>{episode.air_date}</Text>
-          </Box>
-        );
-      })}
+    <Box py="8" px="4">
+      <Box maxW="container.lg" mx="auto">
+        <Heading>Seasons</Heading>
+        <SimpleGrid columns={[1, 1, 2]} spacing="8" justifySelf="center" mt="8">
+          {data.map((season: Season) => (
+            <SeasonCard details={season} key={season.id} />
+          ))}
+        </SimpleGrid>
+      </Box>
     </Box>
   );
 }

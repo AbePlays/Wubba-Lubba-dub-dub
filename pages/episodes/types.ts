@@ -5,3 +5,9 @@ export type Episode = {
   episode: string;
   characters: string[] | null;
 };
+
+export type Season = {
+  id: number;
+  numberOfEpisodes: number;
+  imageUrl: string;
+};
