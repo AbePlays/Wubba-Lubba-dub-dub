@@ -7,9 +7,7 @@ interface Props {}
 
 export default function Navbar({}: Props): ReactElement {
   const router = useRouter();
-
   const { pathname } = router;
-  console.log(pathname);
 
   return (
     <Box

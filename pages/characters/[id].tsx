@@ -1,17 +1,26 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  IconButton,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
-import Character from "../../components/Character/Character";
 
+import Character from "../../components/Character";
 import { CharacterType } from "./types";
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`https://rickandmortyapi.com/api/character`);
   const data = await res.json();
 
-  const numberOfCharacters = data.info.count;
+  const numberOfPages = data.info.count;
   const paths = [];
 
-  for (let i = 1; i <= numberOfCharacters; i++) {
+  for (let i = 1; i <= numberOfPages; i++) {
     const obj = {
       params: {
         id: i.toString(),
@@ -26,29 +35,108 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
-  const characterId = context.params.id;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const page = context.params.id as string;
 
   const res = await fetch(
-    `https://rickandmortyapi.com/api/character/${characterId}`
+    `https://rickandmortyapi.com/api/character?page=${page}`
   );
   const data = await res.json();
 
   return {
     props: {
-      details: data,
+      characters: data.results,
+      currentPage: parseInt(page),
+      maxPages: data.info.pages,
     },
   };
 };
 
+const LeftArrow = () => (
+  <svg
+    width="1rem"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+);
+
+const RightArrow = () => (
+  <svg
+    width="1rem"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+);
+
 interface Props {
-  details: CharacterType;
+  characters: CharacterType[];
+  currentPage: number;
+  maxPages: number;
 }
 
-export default function character({ details }: Props): ReactElement {
+export default function character({
+  characters,
+  currentPage,
+  maxPages,
+}: Props): ReactElement {
+  const router = useRouter();
+
   return (
-    <Box>
-      <Character details={details} />
+    <Box py="8" px="4">
+      <Box maxW="container.lg" mx="auto">
+        <Heading>Characters</Heading>
+        <SimpleGrid
+          columns={[1, 2, 3]}
+          spacing="8"
+          justifyItems="center"
+          maxW="container.md"
+          mx="auto"
+          mt="8"
+        >
+          {characters.map((character: CharacterType) => (
+            <Character details={character} key={character.id} />
+          ))}
+        </SimpleGrid>
+        <Flex justifyContent="center" alignItems="center" mt="8">
+          <IconButton
+            aria-label="left-arrow"
+            icon={<LeftArrow />}
+            isDisabled={currentPage - 1 > 0 ? false : true}
+            onClick={() => {
+              console.log("PRESSED");
+              router.back();
+            }}
+          />
+          <Text mx="4">{currentPage}</Text>
+          <IconButton
+            aria-label="left-arrow"
+            icon={<RightArrow />}
+            isDisabled={currentPage + 1 < maxPages ? false : true}
+            onClick={() => {
+              console.log("PRESSED");
+              router.push(`/characters/${currentPage + 1}`);
+            }}
+          />
+        </Flex>
+      </Box>
     </Box>
   );
 }

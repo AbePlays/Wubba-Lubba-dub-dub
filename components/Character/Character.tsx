@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text, Stack } from "@chakra-ui/react";
+import { Box, Image, Text, Stack, Spacer } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import { CharacterType } from "../../pages/characters/types";
 
@@ -8,26 +8,27 @@ interface Props {
 
 export default function Character({ details }: Props): ReactElement {
   return (
-    <Box px="4" my="8">
-      <Flex
-        maxW="container.md"
-        mx="auto"
-        shadow="xl"
-        rounded="md"
-        justifyContent="space-evenly"
-        alignItems="center"
-        py="8"
-        flexDirection={["column", "column", "row"]}
-      >
-        <Image src={details.image} rounded={["full", "full"]} />
-        <Stack fontSize="lg" mt={["8", "8", "0"]}>
-          <Text>Name: {details.name}</Text>
-          <Text>Gender: {details.gender}</Text>
-          <Text>Origin Location: {details.origin.name}</Text>
-          <Text>Species: {details.species}</Text>
-          <Text>Status: {details.status}</Text>
-        </Stack>
-      </Flex>
+    <Box position="relative" rounded="sm" overflow="hidden">
+      <Image src={details.image} />
+      <Box
+        position="absolute"
+        h="full"
+        w="full"
+        top="0"
+        bg="black"
+        opacity="0.3"
+      />
+      <Stack position="absolute" h="full" w="full" top="0" p="1">
+        <Spacer />
+        <Text
+          textAlign="center"
+          color="white"
+          textTransform="uppercase"
+          letterSpacing="widest"
+        >
+          {details.name}
+        </Text>
+      </Stack>
     </Box>
   );
 }
