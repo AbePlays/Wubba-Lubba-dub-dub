@@ -1,6 +1,8 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
-import { Character } from "./types";
+import Character from "../../components/Character/Character";
+
+import { CharacterType } from "./types";
 
 export const getStaticPaths = async () => {
   const res = await fetch(`https://rickandmortyapi.com/api/character`);
@@ -40,21 +42,13 @@ export const getStaticProps = async (context) => {
 };
 
 interface Props {
-  details: Character;
+  details: CharacterType;
 }
 
 export default function character({ details }: Props): ReactElement {
   return (
     <Box>
-      <Text>This is character page</Text>
-      <Box>
-        <Image src={details.image} />
-        <Text>{details.name}</Text>
-        <Text>{details.gender}</Text>
-        <Text>{details.origin.name}</Text>
-        <Text>{details.species}</Text>
-        <Text>{details.status}</Text>
-      </Box>
+      <Character details={details} />
     </Box>
   );
 }

@@ -1,6 +1,8 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
-import { Character } from "./types";
+import CharacterCard from "../../components/Character";
+
+import { CharacterType } from "./types";
 
 export const getStaticProps = async () => {
   const res = await fetch(`https://rickandmortyapi.com/api/character`);
@@ -14,24 +16,22 @@ export const getStaticProps = async () => {
 };
 
 interface Props {
-  characters: Character[];
+  characters: CharacterType[];
 }
 
 export default function characters({ characters }: Props): ReactElement {
   return (
-    <Box>
-      <Text>This is characters page</Text>
-      {characters.map((character: Character) => {
-        return (
-          <Box key={character.id} border="1px" my="4">
-            <Text>{character.name}</Text>
-            <Flex>
-              <Text>{character.status}</Text>
-              <Text>{character.species}</Text>
-            </Flex>
-          </Box>
-        );
-      })}
+    <Box bg="blue.300">
+      <Box maxW="container.lg" mx="auto" py="8">
+        <Heading mt="8" color="white">
+          All Characters
+        </Heading>
+        <Box maxW="container.md" mx="auto">
+          {characters.map((character: CharacterType) => (
+            <CharacterCard character={character} key={character.id} />
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 }
