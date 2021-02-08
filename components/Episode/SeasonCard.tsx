@@ -1,4 +1,5 @@
 import { Box, Image, Spacer, Stack, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { ReactElement } from "react";
 
 import { Season } from "../../pages/episodes/types";
@@ -9,7 +10,7 @@ interface Props {
 
 export default function SeasonCard({ details }: Props): ReactElement {
   return (
-    <Box>
+    <Link href={`/episodes/${details.id}`}>
       <Box
         maxW="96"
         h="80"
@@ -39,6 +40,6 @@ export default function SeasonCard({ details }: Props): ReactElement {
           </Text>
         </Stack>
       </Box>
-    </Box>
+    </Link>
   );
 }

@@ -32,7 +32,7 @@ export default function Navbar({}: Props): ReactElement {
       >
         <Link href="/">Rick and Morty</Link>
         <Stack isInline spacing="8">
-          <Link href="/characters">Characters</Link>
+          <Link href="/characters/1">Characters</Link>
           <Link href="/episodes">Episodes</Link>
           <Link href="/locations/1">Locations</Link>
           <Link href="/about">About</Link>

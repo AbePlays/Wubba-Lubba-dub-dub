@@ -1,20 +1,22 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { GetStaticPaths, GetStaticProps } from "next";
 import React, { ReactElement } from "react";
-import { Episode } from "./types";
+import { Episode } from "../../components/Episode";
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`https://rickandmortyapi.com/api/episode`);
-  const data = await res.json();
+import { data } from "../../data/episodes";
+import { EpisodeType } from "./types";
 
-  const numberOfEpisodes = data.info.count;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const numberOfSeasons = data.length;
   const paths = [];
 
-  for (let i = 1; i <= numberOfEpisodes; i++) {
+  for (let i = 1; i <= numberOfSeasons; i++) {
     const obj = {
       params: {
         id: i.toString(),
       },
     };
+
     paths.push(obj);
   }
 
@@ -24,33 +26,62 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
-  const episodeId = context.params.id;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const season = context.params.id as string;
+  const seasonIndex = parseInt(season) - 1;
+
+  const numberOfEpisodes = data[seasonIndex].numberOfEpisodes;
+  let episodesInPreviousSeasons = 0;
+  let episodeNumbers = "";
+
+  if (seasonIndex > 0) {
+    for (let i = 0; i < seasonIndex; i++) {
+      episodesInPreviousSeasons += data[i].numberOfEpisodes;
+    }
+  }
+
+  for (let i = 1; i <= numberOfEpisodes; i++) {
+    episodeNumbers += +episodesInPreviousSeasons + i + ",";
+  }
+  episodeNumbers = episodeNumbers.substring(0, episodeNumbers.length - 1);
 
   const res = await fetch(
-    `https://rickandmortyapi.com/api/episode/${episodeId}`
+    `https://rickandmortyapi.com/api/episode/${episodeNumbers}`
   );
-  const data = await res.json();
+  const receivedData = await res.json();
 
   return {
     props: {
-      details: data,
+      episodes: receivedData,
+      season: seasonIndex + 1,
+      imageUrl: data[seasonIndex].imageUrl,
     },
   };
 };
 
 interface Props {
-  details: Episode;
+  episodes: EpisodeType[];
+  season: number;
+  imageUrl: string;
 }
 
-export default function episode({ details }: Props): ReactElement {
+export default function episode({
+  episodes,
+  season,
+  imageUrl,
+}: Props): ReactElement {
   return (
-    <Box>
-      <Text>This is episode page</Text>
-      <Box>
-        <Text>{details.name}</Text>
-        <Text>{details.air_date}</Text>
-        <Text>{details.episode}</Text>
+    <Box py="8" px="4">
+      <Box maxW="container.lg" mx="auto">
+        <Heading>Season {season}</Heading>
+        <Box maxW="container.md" mx="auto" mt="8">
+          <Box rounded="md" overflow="hidden">
+            <Image src={imageUrl} h="full" w="full" objectFit="cover" />
+          </Box>
+          {episodes.map((episode: EpisodeType) => (
+            <Episode episode={episode} key={episode.id} />
+          ))}
+        </Box>
       </Box>
     </Box>
   );
