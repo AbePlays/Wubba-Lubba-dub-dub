@@ -8,8 +8,10 @@ interface Props {
 
 export default function Character({ details }: Props): ReactElement {
   return (
-    <Box maxW="container.lg" mx="auto" px="4" my="8">
+    <Box px="4" my="8">
       <Flex
+        maxW="container.md"
+        mx="auto"
         shadow="xl"
         rounded="md"
         justifyContent="space-evenly"
@@ -17,7 +19,7 @@ export default function Character({ details }: Props): ReactElement {
         py="8"
         flexDirection={["column", "column", "row"]}
       >
-        <Image src={details.image} rounded="sm" />
+        <Image src={details.image} rounded={["full", "full"]} />
         <Stack fontSize="lg" mt={["8", "8", "0"]}>
           <Text>Name: {details.name}</Text>
           <Text>Gender: {details.gender}</Text>

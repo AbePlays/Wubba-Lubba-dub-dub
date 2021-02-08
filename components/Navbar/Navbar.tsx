@@ -1,19 +1,26 @@
 import { Box, Flex, Image, Stack } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
 interface Props {}
 
 export default function Navbar({}: Props): ReactElement {
+  const router = useRouter();
+
+  const { pathname } = router;
+  console.log(pathname);
+
   return (
     <Box
-      position="fixed"
-      top="0"
-      color="white"
-      w="full"
       shadow="base"
       px="4"
       py="2"
+      w="full"
+      style={{
+        position: `${pathname === "/" ? "fixed" : "static"}`,
+        color: `${pathname === "/" ? "white" : "black"}`,
+      }}
     >
       <Flex
         justifyContent="space-between"

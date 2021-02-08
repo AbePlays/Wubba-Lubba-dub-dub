@@ -21,12 +21,10 @@ interface Props {
 
 export default function characters({ characters }: Props): ReactElement {
   return (
-    <Box bg="blue.300">
-      <Box maxW="container.lg" mx="auto" py="8">
-        <Heading mt="8" color="white">
-          All Characters
-        </Heading>
-        <Box maxW="container.md" mx="auto">
+    <Box py="8" px="4">
+      <Box maxW="container.lg" mx="auto">
+        <Heading>All Characters</Heading>
+        <Box maxW="container.md" mx="auto" mt="8">
           {characters.map((character: CharacterType) => (
             <CharacterCard character={character} key={character.id} />
           ))}
