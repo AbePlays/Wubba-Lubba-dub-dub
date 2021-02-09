@@ -1,4 +1,4 @@
-import { ChakraProvider, extendTheme, Box, Flex } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 
@@ -26,7 +26,9 @@ const MyApp = ({ Component, pageProps, router }) => {
     <ChakraProvider theme={theme}>
       <Fonts />
       <AnimatePresence exitBeforeEnter>
-        {isMenuOpen && <FullPageNavbar toggleMenu={toggleMenu} />}
+        {isMenuOpen && (
+          <FullPageNavbar toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+        )}
       </AnimatePresence>
 
       {!isMenuOpen && (

@@ -1,22 +1,16 @@
-import {
-  Flex,
-  Text,
-  Stack,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
 import { MotionBox, MoveDownAnimation } from "../../pages/animations";
+import DarkModeToggle from "./DarkModeToggle";
 
 interface Props {
   toggleMenu: () => void;
 }
 
 export default function Navbar({ toggleMenu }: Props): ReactElement {
-  const { colorMode, toggleColorMode } = useColorMode();
   const color = useColorModeValue("black", "white");
   const bg = useColorModeValue("gray.50", "gray.700");
   const { route } = useRouter();
@@ -49,18 +43,12 @@ export default function Navbar({ toggleMenu }: Props): ReactElement {
         fontSize="sm"
       >
         <Link href="/">Rick and Morty</Link>
-        <Text cursor="pointer" onClick={toggleMenu}>
-          Menu
-        </Text>
-        {/* <Stack isInline spacing="8">
-          <Link href="/characters/1">Characters</Link>
-          <Link href="/episodes">Episodes</Link>
-          <Link href="/locations/1">Locations</Link>
-          <Link href="/about">About</Link>
-          <Text onClick={toggleColorMode} cursor="pointer">
-            Toggle {colorMode === "light" ? "Dark" : "Light"}
+        <Flex alignItems="center">
+          <Text cursor="pointer" onClick={toggleMenu} mr="4">
+            Menu
           </Text>
-        </Stack> */}
+          <DarkModeToggle />
+        </Flex>
       </Flex>
     </MotionBox>
   );
