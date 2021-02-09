@@ -1,10 +1,11 @@
-import { Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Image, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 export const MotionBox = motion.custom(Box);
 export const MotionImage = motion.custom(Image);
 export const MotionText = motion.custom(Text);
 export const MotionSimpleGrid = motion.custom(SimpleGrid);
+export const MotionStack = motion.custom(Stack);
 
 export const FadeUpAnimation = {
   parent: {
