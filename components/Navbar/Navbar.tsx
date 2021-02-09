@@ -1,28 +1,42 @@
-import { Box, Flex, Text, Stack, useColorMode } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Stack,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
+import { MotionBox, MoveDownAnimation } from "../../pages/animations";
+
 interface Props {}
 
 export default function Navbar({}: Props): ReactElement {
-  const router = useRouter();
-  const { pathname } = router;
-
   const { colorMode, toggleColorMode } = useColorMode();
+  const color = useColorModeValue("black", "white");
+  const bg = useColorModeValue("gray.50", "gray.700");
+  const { route } = useRouter();
 
   return (
-    <Box
+    <MotionBox
+      variants={MoveDownAnimation}
+      initial="hidden"
+      animate="show"
       shadow="base"
       px="4"
       py="2"
+      h="7vh"
       w="full"
-      style={{
-        position: `${pathname === "/" ? "fixed" : "static"}`,
-        color: `${pathname === "/" ? "white" : "black"}`,
-      }}
+      zIndex="100"
+      position="fixed"
+      top="0"
+      color={route === "/" ? "white" : color}
+      bg={route === "/" ? "transparent" : bg}
     >
       <Flex
+        h="full"
         justifyContent="space-between"
         alignItems="center"
         maxW="container.xl"
@@ -38,11 +52,11 @@ export default function Navbar({}: Props): ReactElement {
           <Link href="/episodes">Episodes</Link>
           <Link href="/locations/1">Locations</Link>
           <Link href="/about">About</Link>
-          <Text onClick={toggleColorMode}>
+          <Text onClick={toggleColorMode} cursor="pointer">
             Toggle {colorMode === "light" ? "Dark" : "Light"}
           </Text>
         </Stack>
       </Flex>
-    </Box>
+    </MotionBox>
   );
 }

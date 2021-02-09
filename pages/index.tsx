@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
 
 import {
@@ -9,6 +9,8 @@ import {
 } from "./animations";
 
 export default function Home() {
+  const bg = useColorModeValue("black", "white");
+
   return (
     <MotionBox
       variants={PageAnimation}
@@ -21,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box
-        h="100vh"
+        h="100\vh"
         bgGradient="radial(blue.100, blue.300, blue.500, blue.700)"
       >
         <MotionImage
@@ -65,7 +67,7 @@ export default function Home() {
           characters travelling to other planets and dimensions through portals
           and Rick's flying car.
         </Text>
-        <Box h="1" w="16" bg="tomato" mx="auto" my="4" rounded="full"></Box>
+        <Box h="1" w="16" bg={bg} mx="auto" my="8" rounded="full"></Box>
       </Box>
     </MotionBox>
   );

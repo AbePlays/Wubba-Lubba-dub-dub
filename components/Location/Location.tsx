@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import { FadeUpAnimation, MotionBox } from "../../pages/animations";
 
@@ -9,13 +9,15 @@ interface Props {
 }
 
 export default function CharacterCard({ location }: Props): ReactElement {
+  const bg = useColorModeValue("gray.50", "gray.700");
+
   return (
     <MotionBox
       variants={FadeUpAnimation.child}
       shadow="xl"
       my="4"
       p="4"
-      bg="white"
+      bg={bg}
       rounded="lg"
       _hover={{
         borderLeft: "1px",

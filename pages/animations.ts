@@ -61,3 +61,15 @@ export const MoveUpAnimation = {
     },
   },
 };
+
+export const MoveDownAnimation = {
+  hidden: {
+    y: -100,
+  },
+  show: {
+    y: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+};

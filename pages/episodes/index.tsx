@@ -18,6 +18,7 @@ export default function episodes({}: Props): ReactElement {
     <MotionBox
       py="8"
       px="4"
+      mt="7vh"
       variants={PageAnimation}
       initial="hidden"
       animate="show"
