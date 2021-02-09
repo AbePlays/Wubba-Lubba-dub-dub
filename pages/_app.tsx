@@ -5,10 +5,12 @@ import Fonts from "../components/Fonts";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-const theme = extendTheme({
+export const theme = extendTheme({
   fonts: {
     body: "Nunito",
   },
+  initialColorMode: "light",
+  useSystemColorMode: false,
 });
 
 function MyApp({ Component, pageProps, router }) {

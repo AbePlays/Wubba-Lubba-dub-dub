@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Stack } from "@chakra-ui/react";
+import { Box, Flex, Text, Stack, useColorMode } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
@@ -8,6 +8,8 @@ interface Props {}
 export default function Navbar({}: Props): ReactElement {
   const router = useRouter();
   const { pathname } = router;
+
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Box
@@ -36,6 +38,9 @@ export default function Navbar({}: Props): ReactElement {
           <Link href="/episodes">Episodes</Link>
           <Link href="/locations/1">Locations</Link>
           <Link href="/about">About</Link>
+          <Text onClick={toggleColorMode}>
+            Toggle {colorMode === "light" ? "Dark" : "Light"}
+          </Text>
         </Stack>
       </Flex>
     </Box>
