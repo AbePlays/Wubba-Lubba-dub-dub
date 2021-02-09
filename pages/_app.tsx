@@ -1,12 +1,20 @@
-import { ChakraProvider, theme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 
+import Fonts from "../components/Fonts";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+
+const theme = extendTheme({
+  fonts: {
+    body: "Nunito",
+  },
+});
 
 function MyApp({ Component, pageProps, router }) {
   return (
     <ChakraProvider theme={theme}>
+      <Fonts />
       <Navbar />
       <AnimatePresence exitBeforeEnter>
         <Component {...pageProps} key={router.route} />
