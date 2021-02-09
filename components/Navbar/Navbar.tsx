@@ -11,9 +11,11 @@ import React, { ReactElement } from "react";
 
 import { MotionBox, MoveDownAnimation } from "../../pages/animations";
 
-interface Props {}
+interface Props {
+  toggleMenu: () => void;
+}
 
-export default function Navbar({}: Props): ReactElement {
+export default function Navbar({ toggleMenu }: Props): ReactElement {
   const { colorMode, toggleColorMode } = useColorMode();
   const color = useColorModeValue("black", "white");
   const bg = useColorModeValue("gray.50", "gray.700");
@@ -47,7 +49,10 @@ export default function Navbar({}: Props): ReactElement {
         fontSize="sm"
       >
         <Link href="/">Rick and Morty</Link>
-        <Stack isInline spacing="8">
+        <Text cursor="pointer" onClick={toggleMenu}>
+          Menu
+        </Text>
+        {/* <Stack isInline spacing="8">
           <Link href="/characters/1">Characters</Link>
           <Link href="/episodes">Episodes</Link>
           <Link href="/locations/1">Locations</Link>
@@ -55,7 +60,7 @@ export default function Navbar({}: Props): ReactElement {
           <Text onClick={toggleColorMode} cursor="pointer">
             Toggle {colorMode === "light" ? "Dark" : "Light"}
           </Text>
-        </Stack>
+        </Stack> */}
       </Flex>
     </MotionBox>
   );
