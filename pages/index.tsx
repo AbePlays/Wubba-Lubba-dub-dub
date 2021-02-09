@@ -1,9 +1,21 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
+
+import {
+  MotionImage,
+  MotionBox,
+  PageAnimation,
+  MoveUpAnimation,
+} from "./animations";
 
 export default function Home() {
   return (
-    <Box>
+    <MotionBox
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <Head>
         <title>Wubba Lubba dub-dub</title>
         <link rel="icon" href="/favicon.ico" />
@@ -12,7 +24,13 @@ export default function Home() {
         h="100vh"
         bgGradient="radial(blue.100, blue.300, blue.500, blue.700)"
       >
-        <Image src="/background.png" objectFit="contain" h="full" w="full" />
+        <MotionImage
+          variants={MoveUpAnimation}
+          src="/background.png"
+          objectFit="contain"
+          h="full"
+          w="full"
+        />
       </Box>
       <Box
         maxW="container.xl"
@@ -49,6 +67,6 @@ export default function Home() {
         </Text>
         <Box h="1" w="16" bg="tomato" mx="auto" my="4" rounded="full"></Box>
       </Box>
-    </Box>
+    </MotionBox>
   );
 }

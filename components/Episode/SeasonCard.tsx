@@ -1,17 +1,19 @@
 import { Box, Image, Spacer, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { ReactElement } from "react";
+import { FadeLeftAnimation, MotionBox } from "../../pages/animations";
 
-import { Season } from "../../pages/episodes/types";
+import { SeasonType } from "../../pages/episodes/types";
 
 interface Props {
-  details: Season;
+  details: SeasonType;
 }
 
 export default function SeasonCard({ details }: Props): ReactElement {
   return (
     <Link href={`/episodes/${details.id}`}>
-      <Box
+      <MotionBox
+        variants={FadeLeftAnimation.child}
         maxW="96"
         h="80"
         mx="auto"
@@ -39,7 +41,7 @@ export default function SeasonCard({ details }: Props): ReactElement {
             Season {details.id}
           </Text>
         </Stack>
-      </Box>
+      </MotionBox>
     </Link>
   );
 }

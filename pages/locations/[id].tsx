@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
 import Location from "../../components/Location";
+import { FadeUpAnimation, MotionBox, PageAnimation } from "../animations";
 import { LocationType } from "./types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -93,10 +94,22 @@ export default function location({
   const router = useRouter();
 
   return (
-    <Box py="8" px="4">
+    <MotionBox
+      py="8"
+      px="4"
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <Box maxW="container.lg" mx="auto">
         <Heading>Locations</Heading>
-        <Box maxW="container.md" mx="auto" mt="8">
+        <MotionBox
+          variants={FadeUpAnimation.parent}
+          maxW="container.md"
+          mx="auto"
+          mt="8"
+        >
           {locations.map((location: LocationType) => (
             <Location location={location} key={location.id} />
           ))}
@@ -121,8 +134,8 @@ export default function location({
               }}
             />
           </Flex>
-        </Box>
+        </MotionBox>
       </Box>
-    </Box>
+    </MotionBox>
   );
 }

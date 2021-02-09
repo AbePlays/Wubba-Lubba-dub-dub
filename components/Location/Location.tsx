@@ -1,5 +1,6 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { ReactElement } from "react";
+import { FadeUpAnimation, MotionBox } from "../../pages/animations";
 
 import { LocationType } from "../../pages/locations/types";
 
@@ -9,7 +10,8 @@ interface Props {
 
 export default function CharacterCard({ location }: Props): ReactElement {
   return (
-    <Box
+    <MotionBox
+      variants={FadeUpAnimation.child}
       shadow="xl"
       my="4"
       p="4"
@@ -26,6 +28,6 @@ export default function CharacterCard({ location }: Props): ReactElement {
         <Text>Type: {location.type}</Text>
         <Text>Dimension: {location.dimension}</Text>
       </Box>
-    </Box>
+    </MotionBox>
   );
 }

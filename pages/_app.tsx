@@ -1,12 +1,16 @@
 import { ChakraProvider, theme } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
+
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
-      <Component {...pageProps} />
+      <AnimatePresence exitBeforeEnter>
+        <Component {...pageProps} key={router.route} />
+      </AnimatePresence>
       <Footer />
     </ChakraProvider>
   );

@@ -4,6 +4,7 @@ import React, { ReactElement } from "react";
 import { Episode } from "../../components/Episode";
 
 import { data } from "../../data/episodes";
+import { MotionBox, PageAnimation } from "../animations";
 import { EpisodeType } from "./types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -71,7 +72,14 @@ export default function episode({
   imageUrl,
 }: Props): ReactElement {
   return (
-    <Box py="8" px="4">
+    <MotionBox
+      py="8"
+      px="4"
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <Box maxW="container.lg" mx="auto">
         <Heading>Season {season}</Heading>
         <Box maxW="container.md" mx="auto" mt="8">
@@ -83,6 +91,6 @@ export default function episode({
           ))}
         </Box>
       </Box>
-    </Box>
+    </MotionBox>
   );
 }

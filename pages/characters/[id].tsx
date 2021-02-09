@@ -1,16 +1,15 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  IconButton,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
 import Character from "../../components/Character";
+import {
+  FadeUpAnimation,
+  MotionBox,
+  MotionSimpleGrid,
+  PageAnimation,
+} from "../animations";
 import { CharacterType } from "./types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -100,10 +99,18 @@ export default function character({
   const router = useRouter();
 
   return (
-    <Box py="8" px="4">
+    <MotionBox
+      py="8"
+      px="4"
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <Box maxW="container.lg" mx="auto">
         <Heading>Characters</Heading>
-        <SimpleGrid
+        <MotionSimpleGrid
+          variants={FadeUpAnimation.parent}
           columns={[1, 2, 3]}
           spacing="8"
           justifyItems="center"
@@ -114,14 +121,13 @@ export default function character({
           {characters.map((character: CharacterType) => (
             <Character details={character} key={character.id} />
           ))}
-        </SimpleGrid>
+        </MotionSimpleGrid>
         <Flex justifyContent="center" alignItems="center" mt="8">
           <IconButton
             aria-label="left-arrow"
             icon={<LeftArrow />}
             isDisabled={currentPage - 1 > 0 ? false : true}
             onClick={() => {
-              console.log("PRESSED");
               router.back();
             }}
           />
@@ -131,12 +137,11 @@ export default function character({
             icon={<RightArrow />}
             isDisabled={currentPage + 1 < maxPages ? false : true}
             onClick={() => {
-              console.log("PRESSED");
               router.push(`/characters/${currentPage + 1}`);
             }}
           />
         </Flex>
       </Box>
-    </Box>
+    </MotionBox>
   );
 }

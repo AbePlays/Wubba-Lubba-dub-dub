@@ -1,5 +1,6 @@
 import { Box, Image, Text, Stack, Spacer } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
+import { FadeUpAnimation, MotionBox } from "../../pages/animations";
 import { CharacterType } from "../../pages/characters/types";
 
 interface Props {
@@ -8,7 +9,12 @@ interface Props {
 
 export default function Character({ details }: Props): ReactElement {
   return (
-    <Box position="relative" rounded="sm" overflow="hidden">
+    <MotionBox
+      variants={FadeUpAnimation.child}
+      position="relative"
+      rounded="sm"
+      overflow="hidden"
+    >
       <Image src={details.image} />
       <Box
         position="absolute"
@@ -29,6 +35,6 @@ export default function Character({ details }: Props): ReactElement {
           {details.name}
         </Text>
       </Stack>
-    </Box>
+    </MotionBox>
   );
 }

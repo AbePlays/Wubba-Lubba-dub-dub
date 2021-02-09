@@ -6,7 +6,7 @@ export type EpisodeType = {
   characters: string[] | null;
 };
 
-export type Season = {
+export type SeasonType = {
   id: number;
   numberOfEpisodes: number;
   imageUrl: string;
