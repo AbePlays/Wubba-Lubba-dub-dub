@@ -1,11 +1,13 @@
 import { Box, Flex, Link, Text, useColorModeValue } from "@chakra-ui/react";
+import Head from "next/head";
 import React, { ReactElement } from "react";
+
 import {
   FadeUpAnimation,
   MotionBox,
   MotionStack,
   PageAnimation,
-} from "./animations";
+} from "../data/animations";
 
 interface Props {}
 
@@ -24,6 +26,10 @@ export default function about({}: Props): ReactElement {
       px="4"
       mt="7vh"
     >
+      <Head>
+        <title>Wubba Lubba dub-dub | About</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <MotionStack
         variants={FadeUpAnimation.parent}
         maxW="container.xl"

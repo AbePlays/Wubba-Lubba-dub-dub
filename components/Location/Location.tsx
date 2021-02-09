@@ -1,8 +1,8 @@
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { ReactElement } from "react";
-import { FadeUpAnimation, MotionBox } from "../../pages/animations";
 
-import { LocationType } from "../../pages/locations/types";
+import { FadeUpAnimation, MotionBox } from "../../data/animations";
+import { LocationType } from "../../data/types";
 
 interface Props {
   location: LocationType;
@@ -19,7 +19,8 @@ export default function CharacterCard({ location }: Props): ReactElement {
       p="4"
       bg={bg}
       rounded="lg"
-      whileHover={{
+      transition="border 300ms ease-in-out"
+      _hover={{
         borderLeftWidth: "10px",
         borderLeftColor: "#9ad3bc",
       }}

@@ -1,7 +1,8 @@
 import { Box, Image, Text, Stack, Spacer } from "@chakra-ui/react";
 import React, { MutableRefObject, ReactElement, useRef } from "react";
-import { FadeUpAnimation, MotionBox } from "../../pages/animations";
-import { CharacterType } from "../../pages/characters/types";
+
+import { FadeUpAnimation, MotionBox } from "../../data/animations";
+import { CharacterType } from "../../data/types";
 
 interface Props {
   details: CharacterType;

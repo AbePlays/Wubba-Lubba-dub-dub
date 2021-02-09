@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
-import { MotionBox, MoveDownAnimation } from "../../pages/animations";
+import { MotionBox, MoveDownAnimation } from "../../data/animations";
 import DarkModeToggle from "./DarkModeToggle";
 
 interface Props {

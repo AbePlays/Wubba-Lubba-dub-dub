@@ -1,9 +1,9 @@
 import { Box, Image, Spacer, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { ReactElement, useRef, MutableRefObject } from "react";
-import { FadeLeftAnimation, MotionBox } from "../../pages/animations";
 
-import { SeasonType } from "../../pages/episodes/types";
+import { FadeLeftAnimation, MotionBox } from "../../data/animations";
+import { SeasonType } from "../../data/types";
 
 interface Props {
   details: SeasonType;

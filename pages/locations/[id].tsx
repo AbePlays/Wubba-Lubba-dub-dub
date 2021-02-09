@@ -1,11 +1,16 @@
 import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
 import Location from "../../components/Location";
-import { FadeUpAnimation, MotionBox, PageAnimation } from "../animations";
-import { LocationType } from "./types";
+import {
+  FadeUpAnimation,
+  MotionBox,
+  PageAnimation,
+} from "../../data/animations";
+import { LocationType } from "../../data/types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`https://rickandmortyapi.com/api/location`);
@@ -103,6 +108,10 @@ export default function location({
       animate="show"
       exit="exit"
     >
+      <Head>
+        <title>Wubba Lubba dub-dub | Locations</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box maxW="container.lg" mx="auto">
         <Heading>Locations</Heading>
         <MotionBox

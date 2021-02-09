@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "data/episodes.js"  ],
+, "data/episodes.ts"  ],
   "exclude": [
     "node_modules"
   ]

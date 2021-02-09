@@ -6,7 +6,7 @@ import {
   MotionBox,
   PageAnimation,
   MoveUpAnimation,
-} from "./animations";
+} from "../data/animations";
 
 export default function Home() {
   const bg = useColorModeValue("black", "white");

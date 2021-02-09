@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
@@ -9,14 +10,14 @@ import {
   MotionBox,
   MotionSimpleGrid,
   PageAnimation,
-} from "../animations";
-import { CharacterType } from "./types";
+} from "../../data/animations";
+import { CharacterType } from "../../data/types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`https://rickandmortyapi.com/api/character`);
   const data = await res.json();
 
-  const numberOfPages = data.info.count;
+  const numberOfPages = data.info.pages;
   const paths = [];
 
   for (let i = 1; i <= numberOfPages; i++) {
@@ -108,6 +109,10 @@ export default function character({
       animate="show"
       exit="exit"
     >
+      <Head>
+        <title>Wubba Lubba dub-dub | Characters</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box maxW="container.lg" mx="auto">
         <Heading>Characters</Heading>
         <MotionSimpleGrid

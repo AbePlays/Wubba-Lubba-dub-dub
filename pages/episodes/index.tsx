@@ -8,8 +8,9 @@ import {
   FadeLeftAnimation,
   PageAnimation,
   MotionBox,
-} from "../animations";
-import { SeasonType } from "./types";
+} from "../../data/animations";
+import { SeasonType } from "../../data/types";
+import Head from "next/head";
 
 interface Props {}
 
@@ -24,6 +25,10 @@ export default function episodes({}: Props): ReactElement {
       animate="show"
       exit="exit"
     >
+      <Head>
+        <title>Wubba Lubba dub-dub | Seasons</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box maxW="container.lg" mx="auto">
         <Heading>Seasons</Heading>
         <MotionSimpleGrid

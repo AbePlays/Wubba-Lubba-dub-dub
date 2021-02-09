@@ -14,7 +14,7 @@ import {
   NavbarRightHeaderAnimation,
   NavbarSecondaryBackground,
   ShellAnimation,
-} from "../../pages/animations";
+} from "../../data/animations";
 
 const navbarData: NavbarDataType[] = [
   {

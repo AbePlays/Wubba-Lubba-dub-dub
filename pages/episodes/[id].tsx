@@ -4,8 +4,9 @@ import React, { ReactElement } from "react";
 import { Episode } from "../../components/Episode";
 
 import { data } from "../../data/episodes";
-import { MotionBox, PageAnimation } from "../animations";
-import { EpisodeType } from "./types";
+import { MotionBox, PageAnimation } from "../../data/animations";
+import { EpisodeType } from "../../data/types";
+import Head from "next/head";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const numberOfSeasons = data.length;
@@ -81,6 +82,10 @@ export default function episode({
       animate="show"
       exit="exit"
     >
+      <Head>
+        <title>Wubba Lubba dub-dub | Episodes</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box maxW="container.lg" mx="auto">
         <Heading>Season {season}</Heading>
         <Box maxW="container.md" mx="auto" mt="8">
