@@ -19,10 +19,9 @@ export default function CharacterCard({ location }: Props): ReactElement {
       p="4"
       bg={bg}
       rounded="lg"
-      _hover={{
-        borderLeft: "1px",
+      whileHover={{
         borderLeftWidth: "10px",
-        borderLeftColor: "green.200",
+        borderLeftColor: "#9ad3bc",
       }}
     >
       <Heading fontSize="xl">{location.name}</Heading>

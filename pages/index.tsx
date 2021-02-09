@@ -19,11 +19,11 @@ export default function Home() {
       exit="exit"
     >
       <Head>
-        <title>Wubba Lubba dub-dub</title>
+        <title>Wubba Lubba dub-dub | Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box
-        h="100\vh"
+        h="100vh"
         bgGradient="radial(blue.100, blue.300, blue.500, blue.700)"
       >
         <MotionImage

@@ -132,7 +132,10 @@ export default function FullPageNavbar({
             fontWeight="light"
             fontSize="sm"
           >
-            <MotionBox variants={NavbarLeftHeaderAnimation}>
+            <MotionBox
+              variants={NavbarLeftHeaderAnimation}
+              onClick={toggleMenu}
+            >
               <Link href="/">Rick and Morty</Link>
             </MotionBox>
             <MotionText

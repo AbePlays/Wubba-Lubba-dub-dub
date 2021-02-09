@@ -1,6 +1,6 @@
 import { Box, Image, Spacer, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef, MutableRefObject } from "react";
 import { FadeLeftAnimation, MotionBox } from "../../pages/animations";
 
 import { SeasonType } from "../../pages/episodes/types";
@@ -10,6 +10,18 @@ interface Props {
 }
 
 export default function SeasonCard({ details }: Props): ReactElement {
+  const imageRef: MutableRefObject<HTMLImageElement> = useRef();
+
+  const handleMouseEnter = () => {
+    console.log(imageRef);
+    imageRef.current.style.scale = "1.1";
+  };
+
+  const handleMouseLeave = () => {
+    console.log(imageRef);
+    imageRef.current.style.scale = "1";
+  };
+
   return (
     <Link href={`/episodes/${details.id}`}>
       <MotionBox
@@ -21,7 +33,14 @@ export default function SeasonCard({ details }: Props): ReactElement {
         overflow="hidden"
         position="relative"
       >
-        <Image src={details.imageUrl} objectFit="cover" h="full" w="full" />
+        <Image
+          src={details.imageUrl}
+          objectFit="cover"
+          h="full"
+          w="full"
+          ref={imageRef}
+          transition="scale 300ms ease-in-out"
+        />
         <Box
           position="absolute"
           h="full"
@@ -30,13 +49,25 @@ export default function SeasonCard({ details }: Props): ReactElement {
           opacity="0.3"
           bg="black"
         />
-        <Stack position="absolute" h="full" w="full" top="0" p="1">
+        <Stack
+          position="absolute"
+          h="full"
+          w="full"
+          top="0"
+          p="1"
+          _hover={{
+            cursor: "pointer",
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <Spacer />
           <Text
             textAlign="center"
             color="white"
             textTransform="uppercase"
             letterSpacing="widest"
+            fontWeight="bold"
           >
             Season {details.id}
           </Text>

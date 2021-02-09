@@ -56,6 +56,8 @@ export const PageAnimation = {
   show: {
     opacity: 1,
     transition: {
+      delay: 1,
+      delayChildren: 1,
       duration: 0.6,
     },
   },
@@ -119,7 +121,7 @@ export const NavbarSecondaryBackground = {
   exit: {
     y: "-100vh",
     transition: {
-      delay: 0.1,
+      delay: 0.05,
       duration: 1,
     },
   },

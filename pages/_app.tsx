@@ -11,7 +11,7 @@ export const theme = extendTheme({
     heading: "Nunito",
     body: "Nunito",
   },
-  initialColorMode: "light",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 });
 
