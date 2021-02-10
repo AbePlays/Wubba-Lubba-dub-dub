@@ -21,25 +21,29 @@ export const MotionHeading = motion.custom(Heading);
 
 export const FadeUpAnimation = {
   parent: {
-    hidden: { opacity: 0 },
+    hidden: {},
     show: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.3,
       },
     },
+    exit: {
+      opacity: 0,
+    },
   },
   child: {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    exit: {
+      opacity: 0,
+    },
   },
 };
 
 export const FadeLeftAnimation = {
   parent: {
-    hidden: { opacity: 0 },
+    hidden: {},
     show: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.5,
       },
@@ -47,7 +51,7 @@ export const FadeLeftAnimation = {
   },
   child: {
     hidden: { opacity: 0, x: 30 },
-    show: { opacity: 1, x: 0 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.6 } },
   },
 };
 

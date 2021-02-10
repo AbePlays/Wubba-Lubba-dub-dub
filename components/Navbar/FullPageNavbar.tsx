@@ -1,6 +1,6 @@
 import { Box, Flex, keyframes } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 
 import {
   MotionBox,

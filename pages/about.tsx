@@ -1,6 +1,6 @@
 import { Box, Flex, Link, Text, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import {
   FadeUpAnimation,

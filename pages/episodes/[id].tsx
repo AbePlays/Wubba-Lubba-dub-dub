@@ -1,12 +1,16 @@
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Image } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { ReactElement } from "react";
-import { Episode } from "../../components/Episode";
-
-import { data } from "../../data/episodes";
-import { MotionBox, PageAnimation } from "../../data/animations";
-import { EpisodeType } from "../../data/types";
 import Head from "next/head";
+import { ReactElement } from "react";
+
+import { Episode } from "../../components/Episode";
+import { data } from "../../data/episodes";
+import {
+  FadeUpAnimation,
+  MotionBox,
+  PageAnimation,
+} from "../../data/animations";
+import { EpisodeType } from "../../data/types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const numberOfSeasons = data.length;
@@ -89,9 +93,13 @@ export default function episode({
       <Box maxW="container.lg" mx="auto">
         <Heading>Season {season}</Heading>
         <Box maxW="container.md" mx="auto" mt="8">
-          <Box rounded="md" overflow="hidden">
+          <MotionBox
+            rounded="md"
+            overflow="hidden"
+            variants={FadeUpAnimation.child}
+          >
             <Image src={imageUrl} h="full" w="full" objectFit="cover" />
-          </Box>
+          </MotionBox>
           {episodes.map((episode: EpisodeType) => (
             <Episode episode={episode} key={episode.id} />
           ))}

@@ -1,5 +1,5 @@
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { EpisodeType } from "../../data/types";
 

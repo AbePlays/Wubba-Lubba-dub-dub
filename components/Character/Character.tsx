@@ -1,5 +1,5 @@
 import { Box, Image, Text, Stack, Spacer } from "@chakra-ui/react";
-import React, { MutableRefObject, ReactElement, useRef } from "react";
+import { ReactElement } from "react";
 
 import { FadeUpAnimation, MotionBox } from "../../data/animations";
 import { CharacterType } from "../../data/types";
@@ -9,24 +9,15 @@ interface Props {
 }
 
 export default function Character({ details }: Props): ReactElement {
-  const divRef: MutableRefObject<HTMLDivElement> = useRef();
-
-  const handleMouseEnter = () => {
-    divRef.current.style.opacity = "0";
-  };
-
-  const handleMouseLeave = () => {
-    divRef.current.style.opacity = "0.3";
-  };
-
   return (
     <MotionBox
       variants={FadeUpAnimation.child}
       position="relative"
-      rounded="sm"
+      rounded="md"
       overflow="hidden"
+      shadow="md"
     >
-      <Image src={details.image} />
+      <Image src={details.image} alt="Character" />
       <Box
         position="absolute"
         h="full"
@@ -34,18 +25,8 @@ export default function Character({ details }: Props): ReactElement {
         top="0"
         bg="black"
         opacity="0.3"
-        transition="opacity 300ms ease-in-out"
-        ref={divRef}
       />
-      <Stack
-        position="absolute"
-        h="full"
-        w="full"
-        top="0"
-        p="1"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <Stack position="absolute" h="full" w="full" top="0" p="1">
         <Spacer />
         <Text
           textAlign="center"

@@ -1,6 +1,6 @@
 import { Box, Image, Spacer, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { ReactElement, useRef, MutableRefObject } from "react";
+import { ReactElement } from "react";
 
 import { FadeLeftAnimation, MotionBox } from "../../data/animations";
 import { SeasonType } from "../../data/types";
@@ -10,18 +10,6 @@ interface Props {
 }
 
 export default function SeasonCard({ details }: Props): ReactElement {
-  const imageRef: MutableRefObject<HTMLImageElement> = useRef();
-
-  const handleMouseEnter = () => {
-    console.log(imageRef);
-    imageRef.current.style.scale = "1.1";
-  };
-
-  const handleMouseLeave = () => {
-    console.log(imageRef);
-    imageRef.current.style.scale = "1";
-  };
-
   return (
     <Link href={`/episodes/${details.id}`}>
       <MotionBox
@@ -35,11 +23,10 @@ export default function SeasonCard({ details }: Props): ReactElement {
       >
         <Image
           src={details.imageUrl}
+          alt="Season"
           objectFit="cover"
           h="full"
           w="full"
-          ref={imageRef}
-          transition="scale 300ms ease-in-out"
         />
         <Box
           position="absolute"
@@ -58,8 +45,6 @@ export default function SeasonCard({ details }: Props): ReactElement {
           _hover={{
             cursor: "pointer",
           }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           <Spacer />
           <Text

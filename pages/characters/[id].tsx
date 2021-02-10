@@ -2,7 +2,7 @@ import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import Character from "../../components/Character";
 import {
@@ -104,6 +104,7 @@ export default function character({
       py="8"
       px="4"
       mt="7vh"
+      key={currentPage}
       variants={PageAnimation}
       initial="hidden"
       animate="show"

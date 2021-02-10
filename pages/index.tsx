@@ -32,6 +32,7 @@ export default function Home() {
           objectFit="contain"
           h="full"
           w="full"
+          alt="Hero"
         />
       </Box>
       <Box

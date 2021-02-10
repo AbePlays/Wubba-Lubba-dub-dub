@@ -1,7 +1,7 @@
 import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { MotionBox, MoveDownAnimation } from "../../data/animations";
 import DarkModeToggle from "./DarkModeToggle";

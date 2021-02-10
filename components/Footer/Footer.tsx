@@ -1,5 +1,5 @@
 import { Box, Link, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 interface Props {}
 

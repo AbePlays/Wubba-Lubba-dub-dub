@@ -1,5 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
+import Head from "next/head";
 
 import SeasonCard from "../../components/Episode";
 import { data } from "../../data/episodes";
@@ -10,7 +11,6 @@ import {
   MotionBox,
 } from "../../data/animations";
 import { SeasonType } from "../../data/types";
-import Head from "next/head";
 
 interface Props {}
 

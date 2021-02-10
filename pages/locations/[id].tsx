@@ -2,7 +2,7 @@ import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import Location from "../../components/Location";
 import {
@@ -103,6 +103,7 @@ export default function location({
       py="8"
       px="4"
       mt="7vh"
+      key={currentPage}
       variants={PageAnimation}
       initial="hidden"
       animate="show"
@@ -123,7 +124,7 @@ export default function location({
           {locations.map((location: LocationType) => (
             <Location location={location} key={location.id} />
           ))}
-          <Flex justifyContent="flex-end" alignItems="center" mt="8">
+          <Flex justifyContent="center" alignItems="center" mt="8">
             <IconButton
               aria-label="left-arrow"
               icon={<LeftArrow />}
